@@ -1,0 +1,134 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 850 550" width="100%" height="100%">
+  <defs>
+    <!-- Drop Shadow Filter -->
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="2" dy="4" stdDeviation="4" flood-color="#000000" flood-opacity="0.15" />
+    </filter>
+    
+    <!-- Arrow Marker definitions -->
+    <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 10 5 L 0 8.5 z" fill="#64748b" />
+    </marker>
+    <marker id="arrow-success" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 10 5 L 0 8.5 z" fill="#10b981" />
+    </marker>
+    <marker id="arrow-danger" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 10 5 L 0 8.5 z" fill="#ef4444" />
+    </marker>
+  </defs>
+
+  <!-- Background Canvas -->
+  <rect width="850" height="550" rx="12" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1" />
+
+  <!-- Diagram Title -->
+  <text x="30" y="45" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#0f172a">System Architecture</text>
+  <text x="30" y="65" font-family="Arial, sans-serif" font-size="12" fill="#64748b">Code Explainer &amp; Optimizer Dataflow &amp; Guardrails</text>
+
+  <!-- 1. Frontend UI Node -->
+  <g transform="translate(40, 240)" filter="url(#shadow)">
+    <rect width="150" height="110" rx="8" fill="#ffffff" stroke="#6366f1" stroke-width="2" />
+    <rect width="150" height="30" rx="8" fill="#6366f1" />
+    <path d="M0 22 h150 v8 H0 z" fill="#6366f1" />
+    <text x="75" y="20" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#ffffff" text-anchor="middle">Frontend UI</text>
+    <text x="75" y="55" font-family="Arial, sans-serif" font-size="11" fill="#475569" text-anchor="middle">index.html (HTML)</text>
+    <text x="75" y="75" font-family="Arial, sans-serif" font-size="11" fill="#475569" text-anchor="middle">style.css (Vanilla CSS)</text>
+    <text x="75" y="95" font-family="Arial, sans-serif" font-size="11" fill="#475569" text-anchor="middle">script.js (Fetch &amp; DOM)</text>
+  </g>
+
+  <!-- 2. Express Backend Node -->
+  <g transform="translate(280, 240)" filter="url(#shadow)">
+    <rect width="160" height="110" rx="8" fill="#ffffff" stroke="#1e293b" stroke-width="2" />
+    <rect width="160" height="30" rx="8" fill="#1e293b" />
+    <path d="M0 22 h160 v8 H0 z" fill="#1e293b" />
+    <text x="80" y="20" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#ffffff" text-anchor="middle">Express Server</text>
+    <text x="80" y="55" font-family="Arial, sans-serif" font-size="11" fill="#475569" text-anchor="middle">server.js (Node.js)</text>
+    <text x="80" y="75" font-family="Arial, sans-serif" font-size="11" fill="#475569" text-anchor="middle">Static Files Hosting</text>
+    <text x="80" y="95" font-family="Arial, sans-serif" font-size="11" fill="#475569" text-anchor="middle">API Route Handler</text>
+  </g>
+
+  <!-- 3. Acorn AST Parser Node -->
+  <g transform="translate(280, 80)" filter="url(#shadow)">
+    <rect width="160" height="85" rx="8" fill="#ffffff" stroke="#0ea5e9" stroke-width="1.5" />
+    <rect width="160" height="26" rx="8" fill="#0ea5e9" />
+    <path d="M0 18 h160 v8 H0 z" fill="#0ea5e9" />
+    <text x="80" y="17" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#ffffff" text-anchor="middle">Acorn AST Parser</text>
+    <text x="80" y="45" font-family="Arial, sans-serif" font-size="10.5" fill="#475569" text-anchor="middle">Counts named functions</text>
+    <text x="80" y="65" font-family="Arial, sans-serif" font-size="10.5" fill="#475569" text-anchor="middle">Tracks loop locations</text>
+  </g>
+
+  <!-- 4. Context Cache Manager Node -->
+  <g transform="translate(520, 240)" filter="url(#shadow)">
+    <rect width="150" height="110" rx="8" fill="#ffffff" stroke="#f59e0b" stroke-width="1.5" />
+    <rect width="150" height="30" rx="8" fill="#f59e0b" />
+    <path d="M0 22 h150 v8 H0 z" fill="#f59e0b" />
+    <text x="75" y="20" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#ffffff" text-anchor="middle">Cache Manager</text>
+    <text x="75" y="55" font-family="Arial, sans-serif" font-size="11" fill="#475569" text-anchor="middle">getOrCreateCache()</text>
+    <text x="75" y="75" font-family="Arial, sans-serif" font-size="11" fill="#475569" text-anchor="middle">TTL Expiry Handler</text>
+    <text x="75" y="95" font-family="Arial, sans-serif" font-size="11" fill="#475569" text-anchor="middle">Free-Tier Fallback</text>
+  </g>
+
+  <!-- 5. Gemini API Node -->
+  <g transform="translate(730, 240)" filter="url(#shadow)">
+    <rect width="90" height="110" rx="8" fill="#ffffff" stroke="#ec4899" stroke-width="2" />
+    <rect width="90" height="30" rx="8" fill="#ec4899" />
+    <path d="M0 22 h90 v8 H0 z" fill="#ec4899" />
+    <text x="45" y="20" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#ffffff" text-anchor="middle">Gemini API</text>
+    <text x="45" y="60" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#475569" text-anchor="middle">gemini-2.5</text>
+    <text x="45" y="80" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#475569" text-anchor="middle">flash</text>
+  </g>
+
+  <!-- Connections / Arrows -->
+  
+  <!-- Frontend to Backend POST explain -->
+  <path d="M 190 280 L 270 280" fill="none" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)" />
+  <text x="230" y="270" font-family="Arial, sans-serif" font-size="10.5" fill="#475569" text-anchor="middle">POST explain</text>
+
+  <!-- Backend to Acorn (Parse JS) -->
+  <path d="M 330 240 L 330 175" fill="none" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)" />
+  <text x="320" y="210" font-family="Arial, sans-serif" font-size="10" fill="#475569" text-anchor="end">Parse JS</text>
+
+  <!-- Acorn back to Backend (AST metrics) -->
+  <path d="M 390 165 L 390 240" fill="none" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)" />
+  <text x="400" y="210" font-family="Arial, sans-serif" font-size="10" fill="#475569" text-anchor="start">AST metrics</text>
+
+  <!-- Backend to Cache Manager -->
+  <path d="M 440 280 L 510 280" fill="none" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)" />
+  <text x="475" y="270" font-family="Arial, sans-serif" font-size="10.5" fill="#475569" text-anchor="middle">Check Cache</text>
+
+  <!-- Cache Manager to Gemini API -->
+  <path d="M 670 280 L 720 280" fill="none" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)" />
+  <text x="695" y="270" font-family="Arial, sans-serif" font-size="10.5" fill="#475569" text-anchor="middle">Payload</text>
+
+  <!-- Gemini API response back to Cache Manager (implicitly back to Backend) -->
+  <path d="M 720 320 L 440 320" fill="none" stroke="#64748b" stroke-width="1.5" stroke-dasharray="4,4" marker-end="url(#arrow)" />
+  <text x="580" y="340" font-family="Arial, sans-serif" font-size="10.5" fill="#475569" text-anchor="middle">JSON Response</text>
+
+  <!-- Backend to Frontend Paths (Success vs Rejection) -->
+  
+  <!-- Success path (200 OK) -->
+  <path d="M 280 340 L 190 340" fill="none" stroke="#10b981" stroke-width="2" marker-end="url(#arrow-success)" />
+  <text x="235" y="355" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#10b981" text-anchor="middle">200 OK (Code)</text>
+
+  <!-- Rejection path (400 Bad Request) -->
+  <path d="M 280 305 L 190 305" fill="none" stroke="#ef4444" stroke-width="2" marker-end="url(#arrow-danger)" />
+  <text x="235" y="297" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#ef4444" text-anchor="middle">400 Bad Request</text>
+
+  <!-- Legend -->
+  <g transform="translate(40, 480)">
+    <rect width="770" height="45" rx="6" fill="#f1f5f9" stroke="#cbd5e1" stroke-dasharray="3,3" />
+    <circle cx="20" cy="22" r="6" fill="#6366f1" />
+    <text x="32" y="26" font-family="Arial, sans-serif" font-size="11" fill="#475569">Client Side</text>
+
+    <circle cx="150" cy="22" r="6" fill="#1e293b" />
+    <text x="162" y="26" font-family="Arial, sans-serif" font-size="11" fill="#475569">Server Controller</text>
+
+    <circle cx="310" cy="22" r="6" fill="#0ea5e9" />
+    <text x="322" y="26" font-family="Arial, sans-serif" font-size="11" fill="#475569">AST Traversal</text>
+
+    <circle cx="470" cy="22" r="6" fill="#f59e0b" />
+    <text x="482" y="26" font-family="Arial, sans-serif" font-size="11" fill="#475569">Cache lifecycle</text>
+
+    <circle cx="630" cy="22" r="6" fill="#ec4899" />
+    <text x="642" y="26" font-family="Arial, sans-serif" font-size="11" fill="#475569">Gemini LLM Endpoint</text>
+  </g>
+</svg>
