@@ -16,7 +16,7 @@ The application employs a self-contained, monolithic architecture designed for q
 3. **Abstract Syntax Tree (AST) Pre-Analysis**: For JavaScript code, the backend uses `acorn` and `acorn-walk` to parse and count named functions and loop lines. Pre-supplying structural facts in the prompt limits AI hallucinations regarding code flow logic.
 4. **Structured Outputs (JSON Schema)**: The backend configures the Gemini API's `responseSchema` with properties like `inScope`, `outOfScopeMessage`, `explanation`, `timeComplexity`, `spaceComplexity`, and `optimizedCode`. Enforcing a rigid JSON schema guarantees reliable responses without flakey text-splitting code.
 5. **Input Scope Guardrails**: Out-of-scope conversational inputs (e.g., general knowledge questions, recipes) are detected using the LLM's classification logic via the `inScope` schema property. Rejections return a `400` status with a polite warning.
-6. **Simple, Clean Interface**: Adheres to a light-themed junior-developer-style interface layout (using stacked cards instead of complex tabs) and keeps the React component code compact (~75 lines).
+6. **Simple, Clean Interface**: Adheres to a light-themed junior-developer-style interface layout (using stacked cards instead of complex tabs) and keeps the React component code compact (~110 lines).
 
 ---
 
@@ -28,44 +28,68 @@ We have implemented and verified the following key capabilities:
 *   **🔍 Static AST Syntax Analysis (JavaScript only)**: Integrates `acorn` and `acorn-walk` in the backend route to parse JS variables, functions list, and loop lines, making them visible in the "AST Analysis Insights" card on the UI.
 *   **🤖 Structured Output Generation**: Configured the Gemini API `responseSchema` to strictly enforce structured JSON returned directly from the model, mapping properties for the explanation, optimized rewrite, time, and space complexities.
 *   **🛑 Input Scope Guardrails**: Structured classification checks that intercept out-of-scope non-programming queries (such as cookie recipes or historical queries) on the backend, returning a `400` status with a polite message.
-*   **🎨 Clean, Simple UI Aesthetics**: Stacked panels (Original/Optimized code, AST insights, explanations, warning banners) in a clean, light-theme layout (no bloated tabs), powered by a highly shrunken script (`App.jsx` was condensed to just ~75 lines).
+*   **📊 Code Diff Comparison**: Compares the original code and the optimized code using a local line-by-line diffing algorithm, visually highlighting additions (green, with `+` marker) and deletions (red, with `-` marker).
+*   **🎨 Clean, Simple UI Aesthetics**: Stacked panels (Original/Optimized code, AST insights, diff comparisons, explanations, warning banners) in a clean, light-theme layout (no bloated tabs), powered by a highly shrunken script.
 
 ---
 
-## 3. Execution Commands & Build Instructions
+## 3. Installation & Preparation
 
 ### Prerequisites
 - Node.js (v18+ recommended)
-- A Gemini API Key
+- A Gemini API Key configured in `backend/.env`:
+  ```env
+  GEMINI_API_KEY=your_actual_gemini_api_key_here
+  PORT=3001
+  ```
 
-### Setting up the Environment
-Create a `.env` file in the `backend/` directory:
-```env
-GEMINI_API_KEY=your_actual_gemini_api_key_here
-```
-
-### Installation & Build
-
-1. **Build the React Frontend**:
-   Navigate to the `frontend/` directory, install packages, and compile the Vite bundle:
+### Installation
+1. **Frontend**: Install package dependencies for the React app:
    ```bash
    cd frontend
    npm install
-   npm run build
    ```
-
-2. **Setup the Backend Server**:
-   Navigate to the `backend/` directory and install Express/Acorn dependencies:
+2. **Backend**: Install package dependencies for the Express server:
    ```bash
    cd ../backend
    npm install
    ```
 
-### Running the Server
-1. Start the Express server on port 3001:
+---
+
+## 4. How to Run the Application
+
+You can execute and run the application in two different modes:
+
+### Option A: Production Mode (Single Port Serving)
+In this mode, the Express backend serves the pre-compiled production build of the React frontend on a single port (specified in `.env`).
+
+1. **Build the React bundle**:
    ```bash
+   cd frontend
+   npm run build
+   ```
+2. **Start the Express server**:
+   ```bash
+   cd ../backend
    node server.js
    ```
-2. Open your web browser and navigate to:
-   [http://localhost:5173/](http://localhost:5173/)
+3. Navigate to: **[http://localhost:3001/](http://localhost:3001/)**
 
+---
+
+### Option B: Development Mode (Vite Live Reload)
+In this mode, you run the Vite dev server with Hot Module Replacement (HMR) enabled, which proxies API calls to the Express backend.
+
+1. **Start the Backend API** (Terminal window 1):
+   ```bash
+   cd backend
+   node server.js
+   ```
+2. **Start the Frontend Dev Server** (Terminal window 2):
+   ```bash
+   cd frontend
+   npm run dev
+   ```
+3. Navigate to the Vite development address: **[http://localhost:5173/](http://localhost:5173/)**
+   *(Vite will automatically proxy requests from port 5173 to port 3001)*

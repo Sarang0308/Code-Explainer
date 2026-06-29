@@ -29,6 +29,27 @@ function App() {
     }
   };
 
+  const computeDiff = (oldText, newText) => {
+    const oldLines = oldText.split('\n');
+    const newLines = newText.split('\n');
+    const diff = [];
+    
+    let i = 0, j = 0;
+    while (i < oldLines.length || j < newLines.length) {
+      if (i < oldLines.length && j < newLines.length && oldLines[i] === newLines[j]) {
+        diff.push({ type: 'unchanged', text: oldLines[i] });
+        i++; j++;
+      } else if (j < newLines.length && !oldLines.slice(i).includes(newLines[j])) {
+        diff.push({ type: 'added', text: newLines[j] });
+        j++;
+      } else if (i < oldLines.length) {
+        diff.push({ type: 'removed', text: oldLines[i] });
+        i++;
+      }
+    }
+    return diff;
+  };
+
   return (
     <div className="container">
       <h2> Code Explainer</h2>
@@ -71,16 +92,35 @@ function App() {
       )}
 
       {data && (
-        <div className="cols">
-          <div>
-            <h3>Original Code</h3>
-            <pre>{input}</pre>
+        <>
+          <div className="cols">
+            <div>
+              <h3>Original Code</h3>
+              <pre>{input}</pre>
+            </div>
+            <div>
+              <h3>Optimized Code</h3>
+              <pre>{data.optimized}</pre>
+            </div>
           </div>
-          <div>
-            <h3>Optimized Code</h3>
-            <pre>{data.optimized}</pre>
+
+          <div className="card">
+            <h3>Code Diff Comparison</h3>
+            <div className="diff-display" style={{ padding: '10px', backgroundColor: '#f8f9fa' }}>
+              {computeDiff(input, data.optimized || "").map((line, idx) => {
+                const marker = line.type === 'added' ? '+' : (line.type === 'removed' ? '-' : ' ');
+                const bgColor = line.type === 'added' ? '#e6ffed' : (line.type === 'removed' ? '#ffeef0' : 'transparent');
+                const textColor = line.type === 'added' ? '#22863a' : (line.type === 'removed' ? '#cb2431' : '#333');
+                return (
+                  <div key={idx} style={{ display: 'flex', backgroundColor: bgColor, color: textColor, padding: '2px 5px', fontFamily: 'monospace' }}>
+                    <span style={{ width: '20px', fontWeight: 'bold', userSelect: 'none' }}>{marker}</span>
+                    <span>{line.text}</span>
+                  </div>
+                );
+              })}
+            </div>
           </div>
-        </div>
+        </>
       )}
 
       <div className="explanation-section">
