@@ -69,14 +69,3 @@ GEMINI_API_KEY=your_actual_gemini_api_key_here
 2. Open your web browser and navigate to:
    [http://localhost:3001/](http://localhost:3001/)
 
-### Troubleshooting Port 3001 Conflicts (Windows)
-If port 3001 is already in use (`EADDRINUSE`), terminate the process:
-1. Find the PID of the process occupying port 3001:
-   ```powershell
-   netstat -ano | findstr 3001
-   ```
-2. Terminate the process (replace `PID` with the actual number, e.g., 6200):
-   ```powershell
-   taskkill /f /pid PID
-   ```
-3. Restart the server with `node server.js`.
