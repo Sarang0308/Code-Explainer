@@ -67,5 +67,5 @@ GEMINI_API_KEY=your_actual_gemini_api_key_here
    node server.js
    ```
 2. Open your web browser and navigate to:
-   [http://localhost:3001/](http://localhost:3001/)
+   [http://localhost:5173/](http://localhost:5173/)
 
