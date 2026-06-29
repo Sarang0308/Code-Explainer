@@ -61,27 +61,6 @@ We have implemented and verified the following key capabilities:
 
 ## 4. How to Run the Application
 
-You can execute and run the application in two different modes:
-
-### Option A: Production Mode (Single Port Serving)
-In this mode, the Express backend serves the pre-compiled production build of the React frontend on a single port (specified in `.env`).
-
-1. **Build the React bundle**:
-   ```bash
-   cd frontend
-   npm run build
-   ```
-2. **Start the Express server**:
-   ```bash
-   cd ../backend
-   node server.js
-   ```
-3. Navigate to: **[http://localhost:3001/](http://localhost:3001/)**
-
----
-
-### Option B: Development Mode (Vite Live Reload)
-In this mode, you run the Vite dev server with Hot Module Replacement (HMR) enabled, which proxies API calls to the Express backend.
 
 1. **Start the Backend API** (Terminal window 1):
    ```bash
@@ -94,5 +73,4 @@ In this mode, you run the Vite dev server with Hot Module Replacement (HMR) enab
    npm run dev
    ```
 3. Navigate to the Vite development address: **[http://localhost:5173/](http://localhost:5173/)**
-   *(Vite will automatically proxy requests from port 5173 to port 3001)*
-
+   
