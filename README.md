@@ -1,5 +1,7 @@
 # Code Explainer & Optimizer
 
+🚀 **Live Deployment**: [https://code-explainer-production-9635.up.railway.app/](https://code-explainer-production-9635.up.railway.app/)
+
 A clean, self-contained web tool built using Node.js, Express, and React (Vite) to explain and optimize JavaScript and Python code blocks.
 
 ---
@@ -93,3 +95,4 @@ In this mode, you run the Vite dev server with Hot Module Replacement (HMR) enab
    ```
 3. Navigate to the Vite development address: **[http://localhost:5173/](http://localhost:5173/)**
    *(Vite will automatically proxy requests from port 5173 to port 3001)*
+
